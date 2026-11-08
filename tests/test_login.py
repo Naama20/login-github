@@ -13,5 +13,6 @@ def test_open_login_page(page: Page):
     signInPage.fill_password_input()
     print("[pass] Password field filled successfully")
     print("[start] Checking if the sign-in button is visible...")
+    
     signInPage.sign_in_button.is_visible()
     print("[pass] Sign-in button is visible")
