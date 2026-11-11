@@ -1,0 +1,172 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CSS Selectors – HTML Reference</title>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: #f5f7fb;
+      color: #253047;
+      font: 15px/1.55 Arial, Helvetica, sans-serif;
+    }
+    header {
+      background: #19345f;
+      color: white;
+      padding: 24px max(20px, calc((100% - 1050px) / 2));
+    }
+    header h1 { margin: 0 0 5px; font-size: 26px; }
+    header p { margin: 0; color: #dce8fa; }
+    main { max-width: 1050px; margin: 24px auto; padding: 0 18px 40px; }
+    section {
+      background: white;
+      border: 1px solid #dce3ed;
+      border-radius: 10px;
+      padding: 19px 21px;
+      margin-bottom: 18px;
+    }
+    h2 { margin: 0 0 8px; font-size: 19px; color: #19345f; }
+    h3 { margin: 18px 0 5px; font-size: 16px; color: #334d73; }
+    p { margin: 5px 0 10px; }
+    .note { color: #5e6b80; font-size: 13px; }
+    pre {
+      margin: 10px 0 0;
+      padding: 16px;
+      overflow-x: auto;
+      background: #101b2d;
+      color: #e5edf9;
+      border-radius: 8px;
+      font: 13px/1.65 Consolas, "Courier New", monospace;
+      tab-size: 2;
+    }
+    code {
+      font: 13px Consolas, "Courier New", monospace;
+      color: #6d35b1;
+      background: #f1edfa;
+      padding: 2px 5px;
+      border-radius: 4px;
+      white-space: nowrap;
+    }
+    pre code { color: inherit; background: transparent; padding: 0; white-space: pre; }
+    .example {
+      display: grid;
+      grid-template-columns: minmax(210px, 0.8fr) minmax(0, 1.5fr);
+      gap: 14px;
+      align-items: baseline;
+      padding: 9px 0;
+      border-bottom: 1px solid #edf0f5;
+    }
+    .example:last-child { border-bottom: 0; }
+    .meaning { color: #536176; }
+    .tree {
+      border: 1px solid #e0e7f0;
+      background: #fbfcfe;
+      border-radius: 8px;
+      padding: 14px 17px;
+      font-family: Consolas, "Courier New", monospace;
+      font-size: 13px;
+      line-height: 1.85;
+      overflow-x: auto;
+    }
+    .tree .indent1 { padding-left: 24px; }
+    .tree .indent2 { padding-left: 48px; }
+    .tree .indent3 { padding-left: 72px; }
+    .tree .indent4 { padding-left: 96px; }
+    .tag { color: #075985; font-weight: bold; }
+    .attr { color: #7c3aed; }
+    .text { color: #536176; font-family: Arial, sans-serif; font-style: italic; }
+    .footer { text-align: center; color: #7b8798; font-size: 12px; padding: 5px; }
+    @media (max-width: 650px) {
+      .example { grid-template-columns: 1fr; gap: 3px; }
+      .tree { font-size: 12px; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>CSS Selectors – HTML Reference</h1>
+    <p>A static reference for understanding selectors and HTML parent–child relationships.</p>
+  </header>
+
+  <main>
+    <section>
+      <h2>1. HTML hierarchy</h2>
+      <p class="note">Read the indentation: elements further to the right are nested inside their parent element.</p>
+      <div class="tree">
+        <div><span class="tag">&lt;body&gt;</span></div>
+        <div class="indent1"><span class="tag">&lt;header&gt;</span> <span class="text">Page heading</span> <span class="tag">&lt;/header&gt;</span></div>
+        <div class="indent1"><span class="tag">&lt;main&gt;</span></div>
+        <div class="indent2"><span class="tag">&lt;form</span> <span class="attr">id="login-form"</span><span class="tag">&gt;</span></div>
+        <div class="indent3"><span class="tag">&lt;input</span> <span class="attr">id="username" class="form-control" type="text" name="user"</span><span class="tag">&gt;</span></div>
+        <div class="indent3"><span class="tag">&lt;input</span> <span class="attr">id="user-password" class="form-control" type="password" name="password"</span><span class="tag">&gt;</span></div>
+        <div class="indent3"><span class="tag">&lt;button</span> <span class="attr">class="btn primary"</span><span class="tag">&gt;</span><span class="text">Login</span><span class="tag">&lt;/button&gt;</span></div>
+        <div class="indent3"><span class="tag">&lt;a</span> <span class="attr">href="/forgot-password"</span><span class="tag">&gt;</span><span class="text">Forgot password</span><span class="tag">&lt;/a&gt;</span></div>
+        <div class="indent2"><span class="tag">&lt;/form&gt;</span></div>
+        <div class="indent2"><span class="tag">&lt;section</span> <span class="attr">id="profile"</span><span class="tag">&gt;</span></div>
+        <div class="indent3"><span class="tag">&lt;h2&gt;</span><span class="text">Profile details</span><span class="tag">&lt;/h2&gt;</span></div>
+        <div class="indent3"><span class="tag">&lt;input</span> <span class="attr">id="email" class="form-control" type="text" name="email"</span><span class="tag">&gt;</span></div>
+        <div class="indent3"><span class="tag">&lt;button</span> <span class="attr">class="btn"</span><span class="tag">&gt;</span><span class="text">Save</span><span class="tag">&lt;/button&gt;</span></div>
+        <div class="indent2"><span class="tag">&lt;/section&gt;</span></div>
+        <div class="indent2"><span class="tag">&lt;section&gt;</span></div>
+        <div class="indent3"><span class="tag">&lt;ul</span> <span class="attr">id="items"</span><span class="tag">&gt;</span></div>
+        <div class="indent4"><span class="tag">&lt;li&gt;</span><span class="text">First item</span><span class="tag">&lt;/li&gt;</span></div>
+        <div class="indent4"><span class="tag">&lt;li&gt;</span><span class="text">Second item</span><span class="tag">&lt;/li&gt;</span></div>
+        <div class="indent4"><span class="tag">&lt;li&gt;</span><span class="text">Third item</span><span class="tag">&lt;/li&gt;</span></div>
+        <div class="indent3"><span class="tag">&lt;/ul&gt;</span></div>
+        <div class="indent2"><span class="tag">&lt;/section&gt;</span></div>
+        <div class="indent1"><span class="tag">&lt;/main&gt;</span></div>
+        <div class="indent1"><span class="tag">&lt;footer&gt;</span> <span class="text">Page footer</span> <span class="tag">&lt;/footer&gt;</span></div>
+        <div><span class="tag">&lt;/body&gt;</span></div>
+      </div>
+    </section>
+
+    <section>
+      <h2>2. Basic selectors</h2>
+      <div class="example"><code>#username</code><span class="meaning">ID selector – selects the element with <code>id="username"</code>.</span></div>
+      <div class="example"><code>.form-control</code><span class="meaning">Class selector – selects all elements with the class <code>form-control</code> (three inputs).</span></div>
+      <div class="example"><code>input</code><span class="meaning">Tag selector – selects all <code>&lt;input&gt;</code> elements.</span></div>
+      <div class="example"><code>input[type="password"]</code><span class="meaning">Attribute selector – selects input elements with <code>type="password"</code>.</span></div>
+    </section>
+
+    <section>
+      <h2>3. Combining selectors</h2>
+      <div class="example"><code>input#username</code><span class="meaning">An input element whose ID is username.</span></div>
+      <div class="example"><code>input.form-control</code><span class="meaning">Input elements that have the form-control class.</span></div>
+      <div class="example"><code>button.btn.primary</code><span class="meaning">A button that has both the btn and primary classes.</span></div>
+      <div class="example"><code>input[type="text"][name="user"]</code><span class="meaning">An input matching both attributes: type is text AND name is user.</span></div>
+    </section>
+
+    <section>
+      <h2>4. Relationships between elements</h2>
+      <div class="example"><code>#login-form input</code><span class="meaning">Descendant – all input elements anywhere inside the login form.</span></div>
+      <div class="example"><code>#login-form &gt; input</code><span class="meaning">Direct child – input elements that are immediate children of the login form.</span></div>
+      <div class="example"><code>input + button</code><span class="meaning">Adjacent sibling – a button immediately following an input with the same parent.</span></div>
+      <div class="example"><code>input ~ button</code><span class="meaning">General sibling – buttons that follow an input and share the same parent.</span></div>
+    </section>
+
+    <section>
+      <h2>5. Attribute selectors</h2>
+      <div class="example"><code>input[id^="user"]</code><span class="meaning">Starts with (<code>^=</code>) – the id attribute begins with "user".</span></div>
+      <div class="example"><code>input[id$="name"]</code><span class="meaning">Ends with (<code>$=</code>) – the id attribute ends with "name".</span></div>
+      <div class="example"><code>input[id*="user"]</code><span class="meaning">Contains (<code>*=</code>) – the id attribute contains "user" anywhere.</span></div>
+    </section>
+
+    <section>
+      <h2>6. Pseudo-classes</h2>
+      <div class="example"><code>ul li:first-child</code><span class="meaning">Selects the first <code>&lt;li&gt;</code> child of a <code>&lt;ul&gt;</code>.</span></div>
+      <div class="example"><code>ul li:nth-child(2)</code><span class="meaning">Selects the second child element of the <code>&lt;ul&gt;</code> (the second list item here).</span></div>
+    </section>
+
+    <section>
+      <h2>Quick reminder</h2>
+      <p><code>#id</code> selects by ID · <code>.class</code> selects by class · <code>tag</code> selects by element name.</p>
+      <p><code>A B</code> means B is anywhere inside A · <code>A &gt; B</code> means B is a direct child of A.</p>
+      <p><code>A + B</code> means B is the next sibling · <code>A ~ B</code> means B is a later sibling.</p>
+    </section>
+    <div class="footer">Selenium – Day 2 · CSS Selectors reference</div>
+  </main>
+</body>
+</html>

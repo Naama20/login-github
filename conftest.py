@@ -1,11 +1,18 @@
+
+
+import os
+
 import pytest
+from selenium import webdriver
 
 
-@pytest.fixture(scope="session")
-def base_url(pytestconfig: pytest.Config) -> str | None:
-    # Override pytest-playwright's instance-method fixture for pytest 9.2+.
-    return (
-        pytestconfig.getoption("--base-url")
-        or pytestconfig.getini("base_url")
-        or None
-    )
+@pytest.fixture
+def driver():
+    options = options()
+    ciENV = os.getenv("CI")
+    if ciENV:
+        options.add_argument("--headless=new")
+    driver = webdriver.Chrome(options=options)
+    driver.get("https://www.google.com")
+    yield driver
+    driver.quit()  # runs even if the test fails
