@@ -8,11 +8,15 @@ from selenium import webdriver
 
 @pytest.fixture
 def driver():
-    options = options()
+    options = webdriver.ChromeOptions()
     ciENV = os.getenv("CI")
-    if ciENV:
+    if ciENV and ciENV.lower() not in {"false", "0"}:
         options.add_argument("--headless=new")
+        options.add_argument("--no-sandbox")
+        options.add_argument("--disable-dev-shm-usage")
     driver = webdriver.Chrome(options=options)
-    driver.get("https://www.google.com")
-    yield driver
-    driver.quit()  # runs even if the test fails
+    try:
+        driver.get("https://www.google.com")
+        yield driver
+    finally:
+        driver.quit()

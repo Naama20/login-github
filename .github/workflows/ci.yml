@@ -3,7 +3,7 @@ name:  CI Tests
 
 on:
   push:
-    branches: [main]
+    branches: [main, selenium]
   pull_request:
   workflow_dispatch:
 
@@ -39,6 +39,7 @@ jobs:
         env:
           TEST_USERNAME: ${{ secrets.TEST_USERNAME }}
           TEST_PASSWORD: ${{ secrets.TEST_PASSWORD }}
+          CI: true
         run: pytest -sv
 
 
